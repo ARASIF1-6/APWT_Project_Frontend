@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Inventroy Management System Portal 🛍️
 
-## Getting Started
+A modern web application built with Next.js for sales representatives to manage products, customers, orders and their profiles.
 
-First, run the development server:
+## ✨ Features
 
+- 🔐 Secure authentication with JWT
+- 👤 User profile management 
+- 📦 Product management (CRUD operations)
+- 🛒 Shopping cart functionality
+- 📋 Order history
+- 👥 Customer management
+- 🖼️ Image upload support
+- 🎨 Beautiful UI with Tailwind CSS & DaisyUI
+
+## 🚀 Tech Stack
+
+- [Next.js 14](https://nextjs.org/) - React Framework
+- [TypeScript](https://www.typescriptlang.org/) - Type Safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [DaisyUI](https://daisyui.com/) - UI Components
+- [Axios](https://axios-http.com/) - HTTP Client
+- [React Hot Toast](https://react-hot-toast.com/) - Toast Notifications
+
+## 🛠️ Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/sales-portal.git
+cd sales-portal
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env.local` file:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-To learn more about Next.js, take a look at the following resources:
+## 📂 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+├── app/
+│   ├── Sales_Representatives/
+│   │   ├── add_address/
+│   │   ├── add_customer/
+│   │   ├── add_product/
+│   │   ├── cart/
+│   │   ├── components/
+│   │   ├── dashboard/
+│   │   ├── show_order/
+│   │   ├── show_profile/
+│   │   └── ...
+│   ├── layout.tsx
+│   └── page.tsx
+├── public/
+├── package.json
+├── tailwind.config.ts
+└── tsconfig.json
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🔒 Authentication
 
-## Deploy on Vercel
+The application uses JWT-based authentication:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+const handleSignIn = async () => {
+  try {
+    const response = await axios.post('/auth/login', credentials);
+    localStorage.setItem('token', response.data.access_token);
+    localStorage.setItem('username', credentials.username);
+  } catch (error) {
+    console.error('Sign in failed:', error);
+  }
+};
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 🎯 Key Features Implementation
+
+### Protected Routes
+
+```typescript
+const Session = () => {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.push('/sign_in');
+    }
+  }, []);
+};
+```
+
+### File Upload
+
+```typescript
+const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  await axios.post('/upload', formData);
+};
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome! Feel free to check the [issues page](issues).
+
+## 👨‍💻 Author
+
+- Your Name
+- GitHub: [@yourusername](https://github.com/yourusername)
