@@ -26,8 +26,7 @@ A modern web application built with Next.js for sales representatives to manage 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/sales-portal.git
-cd sales-portal
+git clone https://github.com/yourusername/APWT_Project_Frontend.git
 ```
 
 2. Install dependencies:
@@ -111,16 +110,3 @@ const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
   await axios.post('/upload', formData);
 };
 ```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome! Feel free to check the [issues page](issues).
-
-## 👨‍💻 Author
-
-- Your Name
-- GitHub: [@yourusername](https://github.com/yourusername)
